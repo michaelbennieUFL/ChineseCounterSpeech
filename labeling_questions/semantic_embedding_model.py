@@ -177,7 +177,7 @@ class SemanticClassifier(BaseClassifier):
 # 3. Define a Set of Semantic Classifiers with Adjusted Thresholds
 #############################
 random_state = 1
-model_name = "thenlper/gte-base-zh"  # or your chosen model name
+model_name = "Alibaba-NLP/gme-Qwen2-VL-7B-Instruct"  # or your chosen model name
 custom_threshold = 0.98  # Adjust this value to favor higher precision
 
 semantic_classifiers = {
@@ -233,7 +233,7 @@ if __name__ == "__main__":
     # Load the combined TSV dataset
     data_df = pd.read_csv("./processed_data/combined.tsv", sep="\t")
     # Assuming "Question" column has the text and "Potentially_Pejorative" is a label that is "Potentially" if True and "None" or empty if False.
-    X = data_df["Question "].tolist()
+    X = data_df["Question"].tolist()
     # Convert target: non-empty (and not "None") -> True, else False.
     y = [True if str(val).strip() not in ("", "None", "none", "nan", None) else False
          for val in data_df["Potentially_Pejorative"].tolist()]
